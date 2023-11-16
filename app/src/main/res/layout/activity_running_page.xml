@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RunningPage"
+    android:background="@drawable/background2">
+
+    <TextView
+        android:id="@+id/stepCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="133dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView_StepCount"
+        android:layout_width="93dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="35dp"
+        android:gravity="center"
+        android:text="@string/txtView_StepCount"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/stepCounter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_Start_Run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="19dp"
+        android:gravity="center"
+        android:text="@string/btn_Start_Run"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTxt_Save_Run"
+        app:layout_constraintEnd_toStartOf="@+id/editTxt_Save_Run" />
+
+    <Button
+        android:id="@+id/btn_End_Run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        android:text="@string/btn_End_Run"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Save_Run" />
+
+    <TextView
+        android:id="@+id/runTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="41dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtView_RunTime"
+        app:layout_constraintTop_toBottomOf="@+id/stepCounter" />
+
+    <TextView
+        android:id="@+id/txtView_RunTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="56dp"
+        android:gravity="center"
+        android:text="@string/txtView_RunTime"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/runTime"
+        app:layout_constraintEnd_toStartOf="@+id/runTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView_Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="23dp"
+        android:gravity="center"
+        android:text="@string/txtView_Distance"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/distance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_RunTime" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="41dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtView_Distance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtView_Distance" />
+
+    <TextView
+        android:id="@+id/txtViewTimerText3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Start_Run"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_Pause_Run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="19dp"
+        android:text="Pause Run"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTxt_Save_Run"
+        app:layout_constraintEnd_toEndOf="@+id/editTxt_Save_Run" />
+
+    <Button
+        android:id="@+id/btn_Save_Run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="14dp"
+        android:text="Save Run"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/editTxt_Save_Run"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Start_Run" />
+
+    <EditText
+        android:id="@+id/editTxt_Save_Run"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Enter Run Name"
+        android:textColorHint="@color/white"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_End_Run"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Save_Run" />
+</androidx.constraintlayout.widget.ConstraintLayout>

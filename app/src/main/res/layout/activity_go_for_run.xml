@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        tools:context=".GoForRun" />
+
+
+    <RelativeLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_startRun"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            tools:text="@string/btn_startRun" />
+
+        <Button
+            android:id="@+id/btn_endRun"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="144dp"
+            android:layout_marginEnd="99dp"
+            android:layout_marginRight="99dp"
+            android:text="@string/btn_endRun" />
+
+    </RelativeLayout>
+
+</LinearLayout>

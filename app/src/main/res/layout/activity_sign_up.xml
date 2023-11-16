@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp"
+    android:background="@drawable/background2">
+
+    <EditText
+        android:id="@+id/editText_ca_uname"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="74dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="User Name"
+        android:textColorHint="@color/white"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_ca_password"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="1dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/editText_weight"
+        app:layout_constraintTop_toBottomOf="@+id/editText_weight" />
+
+    <EditText
+        android:id="@+id/editText_ca_cpassword"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:textColorHint="@color/white"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_ca_password"
+        app:layout_constraintTop_toBottomOf="@+id/editText_ca_password" />
+
+    <Button
+        android:id="@+id/button_ca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="91dp"
+        android:text="@string/btn_ca"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_gender"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Gender"
+        android:textColorHint="@color/white"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_ca_uname"
+        app:layout_constraintTop_toBottomOf="@+id/editText_ca_uname" />
+
+    <EditText
+        android:id="@+id/editText_age"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Age"
+        android:textColorHint="@color/white"
+        android:inputType="number"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_gender"
+        app:layout_constraintTop_toBottomOf="@+id/editText_gender" />
+
+    <EditText
+        android:id="@+id/editText_height"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Height(cm)"
+        android:textColorHint="@color/white"
+        android:inputType="numberDecimal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_age"
+        app:layout_constraintTop_toBottomOf="@+id/editText_age" />
+
+    <EditText
+        android:id="@+id/editText_weight"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Weight(Kg)"
+        android:textColorHint="@color/white"
+        android:inputType="numberDecimal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintStart_toStartOf="@+id/editText_height"
+        app:layout_constraintTop_toBottomOf="@+id/editText_height" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

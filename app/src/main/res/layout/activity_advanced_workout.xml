@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".advanced_workout"
+    android:background="@drawable/background2">
+
+    <TextView
+        android:id="@+id/txt_Timer3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="59dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Pause3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/btn_Start3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_color"
+        android:text="@string/btn_Start"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_Pause3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Pause3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_Pause3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/button_color"
+        android:text="@string/btn_Pause"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtSaveWorkoutName3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Start3"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Timer3" />
+
+    <Button
+        android:id="@+id/btn_NextActivity3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/btn_NextActivity"
+        android:textColor="#000000"
+        app:backgroundTint="#FFF44F"
+        app:cornerRadius="10dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTxtSaveWorkoutName3"
+        app:layout_constraintEnd_toStartOf="@+id/editTxtSaveWorkoutName3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="254dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_Timer3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_CurrentActivity3"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtView_CurrentActivity3"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTxtSaveWorkoutName3"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="53dp"
+        android:background="@drawable/custom_input"
+        android:ems="10"
+        android:hint="Save Workout Name"
+        android:textColorHint="@color/white"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_NextActivity3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Pause3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

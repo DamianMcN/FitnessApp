@@ -1,0 +1,2 @@
+rootProject.name = "Final Year Project"
+include ':app'

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    tools:context=".MapsActivity"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_goForRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="38dp"
+            android:layout_marginBottom="114dp"
+            android:text="@string/btn_goForRun"
+            android:textColor="#FFFFFF"
+            map:backgroundTint="#FFF44F"
+            map:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/btn_endYourRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="156dp"
+            android:layout_marginBottom="45dp"
+            android:text="@string/btn_endYourRun"
+            android:textColor="#FFFFFF"
+            map:backgroundTint="#FFF44F"
+            map:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/textView_RunDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="165dp"
+            android:layout_marginBottom="257dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_RunResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="129dp"
+            android:layout_marginBottom="41dp"
+            android:text="Get Run Results"
+            android:textColor="#FFFFFF"
+            map:backgroundTint="#FFF44F"
+            map:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/txtViewRunDistanceTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="257dp"
+            android:text="Run Distance: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtViewTimerText"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="88dp"
+            android:layout_marginBottom="219dp"
+            android:gravity="center"
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/btn_PauseRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="49dp"
+            android:layout_marginBottom="110dp"
+            android:text="@string/btnPauseRun"
+            android:textColor="#FFFFFF"
+            map:backgroundTint="#FFF44F"
+            map:cornerRadius="10dp" />
+
+        <Button
+            android:id="@+id/btn_resumeRun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="37dp"
+            android:layout_marginBottom="111dp"
+            android:text="@string/btnResumeRun"
+            android:textColor="#FFFFFF"
+            map:backgroundTint="#FFF44F"
+            map:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/txtViewRunTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="47dp"
+            android:layout_marginBottom="198dp"
+            android:text="Run Time:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView_RunTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="165dp"
+            android:layout_marginBottom="197dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtViewRunName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="248dp"
+            android:layout_marginBottom="115dp"
+            android:text="Run Name"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTxtRunName"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="105dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="Enter Run Name"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>
