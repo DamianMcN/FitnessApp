@@ -55,4 +55,7 @@
     <string name="txtViewDisplayAdvanced">Advanced Workouts Leaderboard</string>
     <string name="btnPauseRun">Pause Run</string>
     <string name="btnResumeRun">Resume Run</string>
+    <item name="startButton" type="id"/>
+    <item name="stopButton" type="id"/>
+    <item name="mapFragment" type="id"/>
 </resources>

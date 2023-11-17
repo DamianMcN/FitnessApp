@@ -21,7 +21,8 @@ public class GoForRunMenu extends AppCompatActivity {
         outdoorRun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GoForRunMenu.this, MapsActivity.class);
+                //Intent intent = new Intent(GoForRunMenu.this, MapsActivity.class);
+                Intent intent = new Intent(GoForRunMenu.this, OutdoorRun.class);
                 startActivity(intent);
             }
         });
