@@ -135,6 +135,13 @@ public class OutdoorRun extends AppCompatActivity {
     private void startRun(){
         runPoints.clear();
         isRunning = true;
+
+        startButton.setVisibility(View.INVISIBLE);
+
+        if (googleMap != null && runPoints.size() > 0){
+            LatLng lastPoint = runPoints.get(runPoints.size() -1);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastPoint, 17f));
+        }
         startLocationUpdates();
     }
 
