@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,9 +23,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +38,11 @@ public class OutdoorRun extends AppCompatActivity {
     GoogleMap googleMap;
     List<LatLng> runPoints = new ArrayList<>();
     boolean isRunning = false;
+    boolean isStartMarkerAdded = false;
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
     LocationCallback locationCallback;
+
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE  = 1;
 
@@ -74,6 +79,7 @@ public class OutdoorRun extends AppCompatActivity {
                 public void onMapReady(@NonNull GoogleMap map) {
                     googleMap = map;
                     enableMyLocation();
+                    zoomToCurrentLocation();
                 }
             });
         }
@@ -89,7 +95,7 @@ public class OutdoorRun extends AppCompatActivity {
             startLocationUpdates();
         }else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
 
@@ -98,7 +104,7 @@ public class OutdoorRun extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && isRunning) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 enableMyLocation();
             } else {
@@ -109,7 +115,7 @@ public class OutdoorRun extends AppCompatActivity {
 
     private void createLocationRequest(){
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(1000);
+        locationRequest.setInterval(5000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
@@ -122,11 +128,15 @@ public class OutdoorRun extends AppCompatActivity {
                 if (isRunning){
                     Location location = locationResult.getLastLocation();
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    if (!isStartMarkerAdded){
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title("Start")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        isStartMarkerAdded = true;
+                    }
                     runPoints.add(latLng);
 
-                    googleMap.addMarker(new MarkerOptions().position(latLng));
-
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+                    //googleMap.addMarker(new MarkerOptions().position(latLng));
                 }
             }
         };
@@ -138,11 +148,11 @@ public class OutdoorRun extends AppCompatActivity {
 
         startButton.setVisibility(View.INVISIBLE);
 
-        if (googleMap != null && runPoints.size() > 0){
-            LatLng lastPoint = runPoints.get(runPoints.size() -1);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastPoint, 17f));
-        }
+        zoomToCurrentLocation();
+
         startLocationUpdates();
+
+        updateCamera();
     }
 
     private void stopRun(){
@@ -150,10 +160,16 @@ public class OutdoorRun extends AppCompatActivity {
         stopLocationUpdates();
 
         if (googleMap != null){
+            if (runPoints.size() > 0){
+                LatLng stopPoint = runPoints.get(runPoints.size() - 1);
+                googleMap.addMarker(new MarkerOptions().position(stopPoint).title("Stop")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
             PolylineOptions polylineOptions = new PolylineOptions();
             polylineOptions.addAll(runPoints);
             googleMap.addPolyline(polylineOptions);
         }
+        isStartMarkerAdded = false;
     }
 
     private void startLocationUpdates(){
@@ -165,5 +181,30 @@ public class OutdoorRun extends AppCompatActivity {
 
     private void stopLocationUpdates(){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
+    private void updateCamera(){
+        if (googleMap != null && runPoints.size() > 0){
+            LatLng lastPoint = runPoints.get(runPoints.size() - 1);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastPoint, 17f), 2000, null);
+        }
+    }
+
+    private void zoomToCurrentLocation(){
+        if (googleMap != null){
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED){
+                fusedLocationProviderClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if (location != null){
+                                    LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 17f));
+                                }
+                            }
+                        });
+            }
+        }
     }
 }
