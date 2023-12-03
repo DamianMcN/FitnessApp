@@ -4,9 +4,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,10 +34,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OutdoorRun extends AppCompatActivity {
 
     Button startButton, stopButton;
+    TextView timerTextView, distanceTextView;
+    CountDownTimer countDownTimer;
+    long startTimeMillis;
+    long elapsedTimeMillis;
     GoogleMap googleMap;
     List<LatLng> runPoints = new ArrayList<>();
     boolean isRunning = false;
@@ -42,6 +50,7 @@ public class OutdoorRun extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
     LocationCallback locationCallback;
+    float totalDistance;
 
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE  = 1;
@@ -53,6 +62,8 @@ public class OutdoorRun extends AppCompatActivity {
 
         startButton = findViewById(R.id.startButton);
         stopButton = findViewById(R.id.stopButton);
+        timerTextView = findViewById(R.id.timerTextView);
+        distanceTextView = findViewById(R.id.distanceTextView);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,16 +159,22 @@ public class OutdoorRun extends AppCompatActivity {
 
         startButton.setVisibility(View.INVISIBLE);
 
+        startTimeMillis = SystemClock.elapsedRealtime();
+        startTimer();
+
         zoomToCurrentLocation();
 
         startLocationUpdates();
 
         updateCamera();
+
+        totalDistance = 0;
     }
 
     private void stopRun(){
         isRunning = false;
         stopLocationUpdates();
+        stopTimer();
 
         if (googleMap != null){
             if (runPoints.size() > 0){
@@ -187,6 +204,13 @@ public class OutdoorRun extends AppCompatActivity {
         if (googleMap != null && runPoints.size() > 0){
             LatLng lastPoint = runPoints.get(runPoints.size() - 1);
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastPoint, 17f), 2000, null);
+
+            if (runPoints.size() > 1){
+                LatLng previousPoint = runPoints.get(runPoints.size() - 2);
+                float distance = calculateDistance(previousPoint, lastPoint);
+                totalDistance += distance;
+                updateDistanceText(totalDistance);
+            }
         }
     }
 
@@ -206,5 +230,52 @@ public class OutdoorRun extends AppCompatActivity {
                         });
             }
         }
+    }
+
+    private void startTimer(){
+        countDownTimer = new CountDownTimer(Long.MAX_VALUE, 1000) {
+            @Override
+            public void onTick(long l) {
+                elapsedTimeMillis = SystemClock.elapsedRealtime() - startTimeMillis;
+                updateTimerText(elapsedTimeMillis);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    private void updateTimerText(long elapsedTimeMillis){
+        int seconds = (int) (elapsedTimeMillis / 1000) % 60;
+        int minutes = (int) (elapsedTimeMillis / (1000 * 60)) % 60;
+        int hours = (int) (elapsedTimeMillis / (1000 * 60 * 60)) % 24;
+
+        String timerText = String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+        timerTextView.setText(timerText);
+    }
+
+    private void stopTimer(){
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }
+
+    private float calculateDistance(LatLng from, LatLng to){
+        Location locationFrom = new Location("pointA");
+        locationFrom.setLatitude(from.latitude);
+        locationFrom.setLongitude(from.longitude);
+
+        Location locationTo = new Location("pointB");
+        locationTo.setLatitude(to.latitude);
+        locationTo.setLongitude(to.longitude);
+
+        return locationFrom.distanceTo(locationTo);
+    }
+
+    private void updateDistanceText(float distance){
+        String distanceText = String.format(Locale.getDefault(), "%.2f meters", distance);
+        distanceTextView.setText(distanceText);
     }
 }
